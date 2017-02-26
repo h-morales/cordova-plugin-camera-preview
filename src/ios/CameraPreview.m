@@ -1,4 +1,4 @@
-#import <AssetsLibrary/AssetsLibrary.h>
+
 #import <Cordova/CDV.h>
 #import <Cordova/CDVPlugin.h>
 #import <Cordova/CDVInvokedUrlCommand.h>
@@ -408,25 +408,6 @@
 
 
         dispatch_group_t group = dispatch_group_create();
-
-
-        ALAssetOrientation orientation;
-        switch ([[UIApplication sharedApplication] statusBarOrientation]) {
-          case UIDeviceOrientationPortraitUpsideDown:
-            orientation = ALAssetOrientationLeft;
-            break;
-          case UIDeviceOrientationLandscapeLeft:
-            orientation = ALAssetOrientationUp;
-            break;
-          case UIDeviceOrientationLandscapeRight:
-            orientation = ALAssetOrientationDown;
-            break;
-          case UIDeviceOrientationPortrait:
-                                   default:
-            orientation = ALAssetOrientationRight;
-        }
-
-        
 
         dispatch_group_notify(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
             NSMutableArray *params = [[NSMutableArray alloc] init];
