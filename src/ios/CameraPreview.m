@@ -1,4 +1,3 @@
-
 #import <Cordova/CDV.h>
 #import <Cordova/CDVPlugin.h>
 #import <Cordova/CDVInvokedUrlCommand.h>
@@ -288,24 +287,25 @@
 
 - (double)radiansFromUIImageOrientation:(UIImageOrientation)orientation
 {
-  double radians;
+double radians;
 
   switch (orientation) {
-      case UIImageOrientationUp :
-          radians = 0.0;
-          break;
-          
-      case UIImageOrientationDown:
-          radians = M_PI; // don't be scared of radians, if you're reading this, you're good at math
-          break;
-          
-      case UIImageOrientationRight:
-          radians = M_PI_2;
-          break;
-          
-      case UIImageOrientationLeft:
-          radians = -M_PI_2;
-          break;
+    case UIImageOrientationUp:
+        case UIImageOrientationUpMirrored:
+      radians = M_PI_2;
+      break;
+        case UIImageOrientationLeft:
+case UIImageOrientationLeftMirrored:
+      radians = 0.f;
+      break;
+case UIImageOrientationRight:
+        case UIImageOrientationRightMirrored:
+      radians = M_PI;
+      break;
+        case UIImageOrientationDown:
+case UIImageOrientationDownMirrored:
+      radians = -M_PI_2;
+      break;
   }
 
   return radians;
@@ -408,6 +408,9 @@
 
 
         dispatch_group_t group = dispatch_group_create();
+
+
+        
 
         dispatch_group_notify(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
             NSMutableArray *params = [[NSMutableArray alloc] init];
