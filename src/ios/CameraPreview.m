@@ -289,21 +289,22 @@
 {
 double radians;
 
-  switch (orientation) {
-    case UIImageOrientationUp:
-        case UIImageOrientationUpMirrored:
+
+  switch ([[UIApplication sharedApplication] statusBarOrientation]) {
+    case UIDeviceOrientationPortrait:
+        //case UIImageOrientationUpMirrored:
       radians = M_PI_2;
       break;
-        case UIImageOrientationLeft:
-case UIImageOrientationLeftMirrored:
+        case UIDeviceOrientationLandscapeLeft:
+//case UIImageOrientationLeftMirrored:
       radians = 0.f;
       break;
-case UIImageOrientationRight:
-        case UIImageOrientationRightMirrored:
+case UIDeviceOrientationLandscapeRight:
+        //case UIImageOrientationRightMirrored:
       radians = M_PI;
       break;
-        case UIImageOrientationDown:
-case UIImageOrientationDownMirrored:
+        case UIDeviceOrientationPortraitUpsideDown:
+//case UIImageOrientationDownMirrored:
       radians = -M_PI_2;
       break;
   }
